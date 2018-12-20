@@ -82,12 +82,12 @@ class Toggle extends React.Component {
       )}
     </ToggleConsumer>
   )
-  state = {on: false}
   toggle = () =>
     this.setState(
       ({on}) => ({on: !on}),
       () => this.props.onToggle(this.state.on),
     )
+  state = {on: false, toggle: this.toggle}
   render() {
     // Because this.props.children is _immediate_ children only, we need
     // to 🐨 remove this map function and render our context provider with
@@ -96,7 +96,7 @@ class Toggle extends React.Component {
     // value (the value prop).
 
     return (
-      <ToggleContext.Provider value={{on: this.state.on, toggle: this.toggle}}>
+      <ToggleContext.Provider value={this.state}>
         {this.props.children}
       </ToggleContext.Provider>
     )
