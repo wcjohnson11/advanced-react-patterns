@@ -18,7 +18,8 @@ class Toggle extends React.Component {
   //
   // 💯 Use a state updater function for `newState` to avoid issues with batching
   toggle = () => {
-    this.setState({ on: !this.state.on },
+    this.setState(
+      ({on}) => ({on: !on}),
       () => {
         this.props.onToggle(this.state.on)
       }
