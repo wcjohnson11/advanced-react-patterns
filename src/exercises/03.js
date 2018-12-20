@@ -44,7 +44,10 @@ import {Switch} from '../switch'
 //   (newlines are ok, like in the above example)
 
 // 🐨 create a ToggleContext with React.createContext here
-const ToggleContext = React.createContext()
+const ToggleContext = React.createContext({
+  on: false,
+  toggle: () => {}
+})
 
 function ToggleConsumer (props) {
   return (
