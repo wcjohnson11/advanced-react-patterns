@@ -3,6 +3,17 @@
 import React from 'react'
 import {Switch} from '../switch'
 
+function componentHasChild(child) {
+  for (const property in Toggle) {
+    if (Toggle.hasOwnProperty(property)) {
+      if (child.type === Toggle[property]) {
+        return true
+      }
+    }
+  }
+  return false
+}
+
 class Toggle extends React.Component {
   // you can create function components as static properties!
   // for example:
@@ -39,12 +50,15 @@ class Toggle extends React.Component {
     //
     // 🐨 you'll want to completely replace the code below with the above logic.
     const {on} = this.state
-    return React.Children.map(this.props.children, child => 
-      React.cloneElement(child, {
-        on,
-        toggle: this.toggle
-      })  
-    )
+    return React.Children.map(this.props.children, child => {
+      if (componentHasChild(child)) {
+        return React.cloneElement(child, {
+          on,
+          toggle: this.toggle
+        })  
+      }
+      return child
+    })
   }
 }
 
@@ -62,6 +76,7 @@ function Usage({
       <Toggle.On>The button is on</Toggle.On>
       <Toggle.Off>The button is off</Toggle.Off>
       <Toggle.Button />
+      <span>Helloooooo</span>
     </Toggle>
   )
 }
