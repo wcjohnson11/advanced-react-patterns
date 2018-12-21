@@ -15,7 +15,7 @@ class Toggle extends React.Component {
       on: this.state.on,
       toggle: this.toggle,
       togglerProps: {
-        "aria-pressed": this.state.on,
+        'aria-pressed': this.state.on,
         onClick: this.toggle
       }
       // In our last usage example, you'll notice that we had some
